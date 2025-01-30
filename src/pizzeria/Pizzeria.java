@@ -8,10 +8,10 @@ import java.util.List;
 public class Pizzeria {
 	
 	private List<Cliente> clientes = new ArrayList<>();
-	private static List<Pizza> pizzas = new ArrayList<>();
+	private List<Pizza> pizzas = new ArrayList<>();
 	private List<Pedido> pedidos = new ArrayList<>();
 
-	public static void registrarPizzas(Pizza pizza) {
+	public void registrarPizzas(Pizza pizza) {
 		if (pizza == null) {
 			throw new IllegalArgumentException("La pizza no puede ser nula.");
 		}
@@ -59,6 +59,36 @@ public class Pizzeria {
 		for (Cliente cliente : clientes) {
 			if (cliente.getTelefono().equals(cliente.getTelefono())) {
 				cliente.mostrarInformacion();
+			}
+		}
+	}
+
+	public void pizzasConIngrediente(String ingrediente) {
+		if(ingrediente == null || ingrediente.isBlank()) {
+			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
+		}
+		System.out.println("Estas pizzas tienen " + ingrediente);
+		for (Pizza pizza: pizzas) {
+			if(pizza.getIngredientes().contains(ingrediente)) {
+				System.out.println(pizza.getNombre());
+			}
+			else{
+				System.out.println("No hay pizzas con este ingrediente.");
+			}
+		}
+	}
+	
+	public void pizzasSinIngrediente(String ingrediente) {
+		if(ingrediente == null || ingrediente.isBlank()) {
+			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
+		}
+		System.out.println("Estas pizzas no tienen " + ingrediente);
+		for (Pizza pizza : pizzas) {
+			if(!(pizza.getIngredientes().contains(ingrediente))) {
+				System.out.println(pizza.getNombre());
+			}
+			else {
+				System.out.println("No hay pizzas con estas características.");
 			}
 		}
 	}
