@@ -87,4 +87,8 @@ public class Cliente {
 		}
 		this.direccion = direccion;
 	}
+	
+	public void mostrarInformacion() {
+		System.out.println("Nombre: " + nombre + " Direccion" + direccion + " Email"+ email + " Telefono: "+ telefono);
+	}
 }
