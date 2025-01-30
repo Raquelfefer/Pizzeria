@@ -55,5 +55,13 @@ public class Pizzeria {
 		}
 	}
 	
+	public void consultarClienteTelefono(String telefono) {
+		for (Cliente cliente : clientes) {
+			if (cliente.getTelefono().equals(cliente.getTelefono())) {
+				System.out.println("Nombre: " + cliente.getNombre() + " Telefono: " + cliente.getTelefono());
+			}
+		}
+	}
+	
 	
 }
