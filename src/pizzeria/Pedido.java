@@ -13,6 +13,7 @@ public class Pedido {
 	private double total;
 	private EnumTipo tipo;
 	private List<Pizza> pizza;
+	private static Pedido ultimoPedido;
 
 	public Pedido(Cliente cliente, double total, EnumTipo tipo, List<Pizza> pizza) {
 		contadorIdPedido++;
@@ -21,6 +22,11 @@ public class Pedido {
 		this.fecha = LocalDateTime.now();
 		this.tipo = tipo;
 		this.pizza = pizza;
+		ultimoPedido = this;
+	}
+
+	public Pedido getUltimoPedido() {
+		return ultimoPedido;
 	}
 
 	public void setCliente(Cliente cliente) {
@@ -63,8 +69,14 @@ public class Pedido {
 	}
 
 	public void mostrarPedido() {
-		System.out.printf("ID pedido: " + idPedido + " \nCliente: " + cliente 
-				+ "\nPizza: " + pizza+ " \nTipo de pedido: " + tipo);
+		System.out.printf("ID pedido: " + idPedido + " \nCliente: " + cliente + "\nPizza: " + pizza
+				+ " \nTipo de pedido: " + tipo);
 	}
 
+	public void mostrarUltimoPedido() {
+		if (ultimoPedido != null) {
+            System.out.println("Último pedido: ");
+            ultimoPedido.mostrarPedido(); 
+        }
+	}
 }
