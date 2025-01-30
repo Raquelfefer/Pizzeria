@@ -7,12 +7,20 @@ public class Pizza {
 	private double precio;
 	
 	private static Pizza pizzaMasCara;
+	private static double precioMasCara = 0;
 	private static Pizza pizzaMasBarata;
+	private static double precioMasBarata = 0;
 	
 	public Pizza (String nombre, String ingredientes, double precio) {
 		setNombre(nombre);
 		setIngredientes(ingredientes);
 		setPrecio(precio);
+		if (precio > precioMasCara) {
+			pizzaMasCara = this;
+		}
+		else if(precio < precioMasBarata) {
+			pizzaMasBarata = this;
+		}
 	}
 	
 	public String getNombre() {
@@ -45,5 +53,8 @@ public class Pizza {
 		if(precio < 0) {
 			throw new IllegalArgumentException("El precio de la pizza no pude ser menor a 0.");
 		}
+		this.precio =  precio;
 	}
+	
+	
 }
