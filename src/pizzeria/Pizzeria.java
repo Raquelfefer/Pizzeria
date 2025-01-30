@@ -63,5 +63,9 @@ public class Pizzeria {
 		}
 	}
 	
+	public void consultarPedidosHoy() {
+		
+	}
+	
 	
 }
