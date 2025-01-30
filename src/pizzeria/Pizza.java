@@ -36,6 +36,10 @@ public class Pizza {
 		return this.precio;
 	}
 
+	public int getId() {
+		return this.id;
+	}
+
 	public void setNombre(String nombre) {
 		if (nombre == null || nombre.isBlank()) {
 			throw new IllegalArgumentException("El nombre no puede ser nulo o en blanco.");
