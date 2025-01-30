@@ -62,10 +62,13 @@ public class Cliente {
 
 	public void setEmail(String email) {
 		int arroba = 0;
+		if (email == null || email.isBlank()) {
+			throw new IllegalArgumentException("El email no puede ser nulo o en blanco.");
+		}
 		for (int i = 0; i < email.length(); i++) {
-			String caracter = email.substring(i, i +1);
+			String caracter = email.substring(i, i + 1);
 			if (caracter.matches("@")) {
-				arroba ++;
+				arroba++;
 			}
 		}
 		if (arroba != 1) {
@@ -73,11 +76,11 @@ public class Cliente {
 		}
 		this.email = email;
 	}
-	
+
 	public String getDireccion() {
 		return direccion;
 	}
-	
+
 	public void setDireccion(String direccion) {
 		if (direccion == null || direccion.isBlank()) {
 			throw new IllegalArgumentException("La direccion no puede ser nula o en blanco.");
