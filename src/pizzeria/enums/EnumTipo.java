@@ -1,5 +1,7 @@
 package pizzeria.enums;
 
-public class EnumTipo {
+public enum EnumTipo {
+	
+	LOCAL, RECOGER, DOMICILIO
 
 }
