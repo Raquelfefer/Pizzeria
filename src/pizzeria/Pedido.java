@@ -18,6 +18,7 @@ public class Pedido {
 		setCliente(cliente);
 		this.fecha = LocalDateTime.now();
 		setTotal(total);
+		this.tipo = tipo;
 	}
 
 	public void setCliente(String cliente) {
