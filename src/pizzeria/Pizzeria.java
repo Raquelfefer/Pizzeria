@@ -96,7 +96,11 @@ public class Pizzeria {
 	}
 	
 	public void consultarPedidosHoy() {
-		
+		for(Pedido pedido : pedidos) {
+			if(pedido.getFecha().equals(LocalDateTime.now())) {
+				pedido.mostrarPedido();
+			}
+		}
 	}
 	
 	
