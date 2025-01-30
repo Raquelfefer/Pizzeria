@@ -55,6 +55,7 @@ public class Pizzeria {
 		}
 	}
 	
+
 	public void consultarClienteTelefono(String telefono) {
 		for (Cliente cliente : clientes) {
 			if (cliente.getTelefono().equals(cliente.getTelefono())) {
@@ -62,6 +63,7 @@ public class Pizzeria {
 			}
 		}
 	}
+
 
 	public void pizzasConIngrediente(String ingrediente) {
 		if(ingrediente == null || ingrediente.isBlank()) {
