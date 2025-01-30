@@ -12,7 +12,7 @@ public class Pedido {
 	private double total;
 	private EnumTipo tipo;
 
-	public Pedido(String cliente, double total, EnumTipo tipo) {
+	public Pedido(Cliente cliente, double total, EnumTipo tipo) {
 		contadorIdPedido++;
 		this.idPedido = contadorIdPedido;
 		setCliente(cliente);
@@ -21,11 +21,11 @@ public class Pedido {
 		this.tipo = tipo;
 	}
 
-	public void setCliente(String cliente) {
-		if (cliente == null || cliente.isBlank()) {
-			throw new IllegalArgumentException("El nombre del cliente no puede ser nulo o estar vacio");
-		} else {
+	public void setCliente(Cliente cliente) {
+		if (cliente == null) {
+			throw new IllegalArgumentException("El nombre del cliente no puede ser nulo. ");
 		}
+		this.cliente = cliente;
 	}
 
 	public Cliente getCliente() {
@@ -47,9 +47,9 @@ public class Pedido {
 	public double getTotal() {
 		return total;
 	}
-	
+
 	public EnumTipo getTipo() {
 		return tipo;
 	}
-	
+
 }
