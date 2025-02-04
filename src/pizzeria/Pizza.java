@@ -10,7 +10,7 @@ public class Pizza {
 	private static Pizza pizzaMasCara;
 	private static double precioMasCara = 0;
 	private static Pizza pizzaMasBarata;
-	private static double precioMasBarata = 0;
+	private static double precioMasBarata = 100;
 
 	public Pizza(String nombre, String ingredientes, double precio) {
 		this.id = idUlt++;
@@ -19,8 +19,11 @@ public class Pizza {
 		setPrecio(precio);
 		if (precio > precioMasCara) {
 			pizzaMasCara = this;
-		} else if (precio < precioMasBarata) {
+			precioMasCara = precio;
+		}
+		if (precio < precioMasBarata) {
 			pizzaMasBarata = this;
+			precioMasBarata = precio;
 		}
 	}
 	
@@ -68,11 +71,19 @@ public class Pizza {
 	}
 	
 	public static void mostrarPizzaMasCara() {
-		pizzaMasCara.mostrarInfoPizza();
+		if(pizzaMasCara == null) {
+			System.out.println("No hay pizzas en el sistema.");
+		}else {
+			pizzaMasCara.mostrarInfoPizza();
+		}
 	}
 	
 	public static void mostrarPizzaMasBarata() {
-		pizzaMasBarata.mostrarInfoPizza();
+		if(pizzaMasBarata == null) {
+			System.out.println("No hay pizzas en el sistema.");
+		}else {
+			pizzaMasBarata.mostrarInfoPizza();
+		}
 	}
 	
 

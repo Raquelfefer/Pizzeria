@@ -80,7 +80,7 @@ public class Pedido {
 		}
 	}
 	
-	public void mostrarUltimoPedido() {
+	public static void mostrarUltimoPedido() {
 		if (ultimoPedido != null) {
             System.out.println("Último pedido: ");
             ultimoPedido.mostrarInfoPedido(); 

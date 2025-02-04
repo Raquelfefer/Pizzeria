@@ -40,25 +40,35 @@ public class Pizzeria {
 	}
 
 	public void mostrarPizzas() {
-		System.out.println("Lista de pizzas:");
-		for (Pizza pizza : this.pizzas) {
+		if(pizzas == null || pizzas.size() == 0) {
+			System.out.println("No hay pizzas en la lista.");
+		}else {
+			System.out.println("Lista de pizzas:");
+			for (Pizza pizza : this.pizzas) {
 			pizza.mostrarInfoPizza();
-			;
+			}
 		}
 	}
 
 	public void mostrarPedidos() {
-		System.out.println("Lista de pedidos:");
-		for (Pedido pedido : this.pedidos) {
+		if(pedidos == null || pedidos.size() == 0) {
+			System.out.println("No hay pedidos en la lista.");
+		}else {
+			System.out.println("Lista de pedidos:");
+			for (Pedido pedido : this.pedidos) {
 			pedido.mostrarInfoPedido();
-			;
+			}
 		}
 	}
 
 	public void mostrarClientes() {
-		System.out.println("Lista de clientes:");
-		for (Cliente cliente : this.clientes) {
+		if(clientes == null || clientes.size() == 0) {
+			System.out.println("No hay clientes en la lista.");
+		}else {
+			System.out.println("Lista de clientes:");
+			for (Cliente cliente : this.clientes) {
 			cliente.mostrarInfoCliente();
+			}
 		}
 	}
 

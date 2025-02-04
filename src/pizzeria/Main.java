@@ -82,13 +82,25 @@ public class Main {
 				
 			case 13:
 				pizzeria.consultarPedidosDomicilio();
+				break;
+			
+			case 14:
+				Pizza.mostrarPizzaMasCara();
+				break;
 				
-				
+			case 15:
+				Pizza.mostrarPizzaMasBarata();
+				break;
+			
+			case 16:
+				Pedido.mostrarUltimoPedido();
 			}
 			
 			
 
-		} while (opcion > 0 && opcion <= 17);
+		} while (opcion > 0 && opcion <= 16);
+		System.out.println("Ha salido del menú.");
+		
 
 	}
 
