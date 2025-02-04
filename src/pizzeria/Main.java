@@ -3,6 +3,8 @@ package pizzeria;
 import java.util.List;
 import java.util.Scanner;
 
+import pizzeria.enums.EnumTipo;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -25,9 +27,24 @@ public class Main {
 			switch (opcion) {
 			case 1:
 				Pizza p = nuevaPizza(sc);
-				Pizzeria.registrarPizzas(p);
+				pizzeria.registrarPizzas(p);
 				break;
+
+			case 2:
+				Cliente c = nuevoCliente(sc);
+				pizzeria.registrarClientes(c);
+				break;
+
+			case 3:
+				Pedido pe = nuevoPedido(sc);
+				pizzeria.realizarPedido(pe);
+				break;
+
+			case 4:
+				Pizza p = verPizzas(List);
+				pizzeria.mostrarPizzas();
 			}
+
 		} while (opcion > 0 && opcion <= 17);
 
 	}
@@ -43,9 +60,34 @@ public class Main {
 		return new Pizza(nombre, ingredientes, precio);
 	}
 
+	public static Cliente nuevoCliente(Scanner sc) {
+		System.out.println("Nombre: ");
+		String nombre = sc.next();
+		System.out.println("Direccion: ");
+		String direccion = sc.next();
+		System.out.println("Email: ");
+		String email = sc.next();
+		System.out.println("Teléfono: ");
+		String telefono = sc.next();
+
+		return new Cliente(nombre, direccion, email, telefono);
+	}
+
+	public static Pedido nuevoPedido(Scanner sc) {
+		System.out.println("Cliente: ");
+		int idCliente = sc.nextInt();
+		System.out.println("Tipo de entrega: ");
+		String tipo = sc.next();
+		System.out.println("Pizza: ");
+		List<Pizza> pizza  = Pedido.getPizza();
+
+		return new Pedido(cliente, tipo, pizza);
+	}
+
 	public static void verPizzas(List<Pizza> pizzas) {
 		for (Pizza p : pizzas) {
 			System.out.println(p);
 		}
 	}
+
 }

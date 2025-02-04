@@ -13,18 +13,22 @@ public class Pedido {
 	private LocalDateTime fecha;
 	private double total;
 	private EnumTipo tipo;
-	private List<Pizza> pizzas = new ArrayList<>();
+	private List<Pizza> pizzas;
 	private static Pedido ultimoPedido;
 
-	public Pedido(Cliente cliente, double total, EnumTipo tipo) {
+
+	public Pedido(Cliente cliente, EnumTipo tipo) {
 		contadorIdPedido++;
 		this.idPedido = contadorIdPedido;
 		setCliente(cliente);
 		this.fecha = LocalDateTime.now();
 		this.tipo = tipo;
+		this.pizzas = new ArrayList<Pizza>();
+		this.total = 0.0;
 		ultimoPedido = this;
 	}
 
+	
 	public Pedido getUltimoPedido() {
 		return ultimoPedido;
 	}
