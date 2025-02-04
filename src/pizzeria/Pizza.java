@@ -23,6 +23,7 @@ public class Pizza {
 			pizzaMasBarata = this;
 		}
 	}
+	
 
 	public String getNombre() {
 		return this.nombre;
@@ -64,6 +65,14 @@ public class Pizza {
 	
 	public void mostrarInfoPizza() {
 		System.out.printf("Nombre: %s%nIngredientes: %s%nPrecio: %.2f €.%n", nombre, ingredientes, precio);
+	}
+	
+	public static void mostrarPizzaMasCara() {
+		pizzaMasCara.mostrarInfoPizza();
+	}
+	
+	public static void mostrarPizzaMasBarata() {
+		pizzaMasBarata.mostrarInfoPizza();
 	}
 	
 

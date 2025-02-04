@@ -74,7 +74,7 @@ public class Main {
 
 	public static Pedido nuevoPedido(Scanner sc) {
 		System.out.println("Cliente: ");
-		int idCliente = sc.nextInt();
+		int cliente = sc.nextInt();
 		System.out.println("Tipo de entrega: ");
 		String tipo = sc.next();
 
@@ -86,5 +86,7 @@ public class Main {
 			System.out.println(p);
 		}
 	}
+	
+
 
 }

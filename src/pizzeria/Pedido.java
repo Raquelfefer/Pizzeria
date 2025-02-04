@@ -64,7 +64,7 @@ public class Pedido {
 		return pizzas;
 	}
 
-	public void addPizza(Pizza pizza) {
+	public void addPizzaPedido(Pizza pizza) {
 		if (pizza == null) {
 			throw new IllegalArgumentException("La pizza no esta en el sistema");
 		}
