@@ -1,8 +1,7 @@
 package pizzeria;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
-
 import java.util.List;
 
 public class Pizzeria {
@@ -59,7 +58,7 @@ public class Pizzeria {
 	public void consultarClienteTelefono(String telefono) {
 		for (Cliente cliente : clientes) {
 			if (cliente.getTelefono().equals(cliente.getTelefono())) {
-				cliente.mostrarInformacion();
+				cliente.mostrarInfoCliente();
 			}
 		}
 	}
@@ -95,13 +94,25 @@ public class Pizzeria {
 		}
 	}
 	
+
 	public void consultarPedidosHoy() {
 		for(Pedido pedido : pedidos) {
 			if(pedido.getFecha().equals(LocalDateTime.now())) {
-				pedido.mostrarPedido();
+				pedido.mostrarInfoPedido();
 			}
 		}
 	}
 	
+	public void consultarPedidosLocal() {
+		System.out.println("Los pedidos consumidos en local son: ");
+		for(Pedido pedido : pedidos) {
+			if(pedido.getTipo().equals("LOCAL")) {
+				pedido.mostrarInfoPedido();
+			}
+		}
+	}
+	
+	
+
 	
 }

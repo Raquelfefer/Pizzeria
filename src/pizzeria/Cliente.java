@@ -88,7 +88,7 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 	
-	public void mostrarInformacion() {
-		System.out.println("Nombre: " + nombre + " Direccion" + direccion + " Email"+ email + " Telefono: "+ telefono);
+	public void mostrarInfoCliente() {
+		System.out.printf("Nombre: %s%nDirección: %s%nEmail: %s%nTelefono: %s%n", nombre, direccion, email, telefono);
 	}
 }

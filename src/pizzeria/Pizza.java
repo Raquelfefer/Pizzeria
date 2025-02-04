@@ -61,9 +61,10 @@ public class Pizza {
 		this.precio = precio;
 	}
 	
-	public  void mostrarPizza() {
-		System.out.println("Nombre: " + nombre + " - Ingredientes: " + ingredientes 
-				+ " - Precio: " + precio + " €");
+	
+	public void mostrarInfoPizza() {
+		System.out.printf("Nombre: %s%nIngredientes: %s%nPrecio: %.2f €.%n", nombre, ingredientes, precio);
 	}
+	
 
 }
