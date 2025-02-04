@@ -36,21 +36,21 @@ public class Pizzeria {
 	public void mostrarPizzas() {
 		System.out.println("Lista de pizzas:");
 		for (Pizza pizza: pizzas) {
-			System.out.println("Pizza: " + pizza.getNombre());
+			pizza.mostrarInfoPizza();;
 		}
 	}
 	
 	public void mostrarPedidos() {
 		System.out.println("Lista de pedidos:");
 		for (Pedido pedido : pedidos) {
-			System.out.println("Pedido " + pedido.getIdPedido());
+			pedido.mostrarInfoPedido();;
 		}
 	}
 	
 	public void mostrarClientes() {
 		System.out.println("Lista de clientes:");
 		for (Cliente cliente: clientes) {
-			System.out.println("Cliente " + cliente.getNombre());
+			cliente.mostrarInfoCliente();
 		}
 	}
 	
@@ -107,6 +107,24 @@ public class Pizzeria {
 		System.out.println("Los pedidos consumidos en local son: ");
 		for(Pedido pedido : pedidos) {
 			if(pedido.getTipo().equals("LOCAL")) {
+				pedido.mostrarInfoPedido();
+			}
+		}
+	}
+	
+	public void consultarPedidosRecoger() {
+		System.out.println("Los pedidos para recoger son: ");
+		for(Pedido pedido: pedidos) {
+			if(pedido.getTipo().equals("RECOGER")) {
+				pedido.mostrarInfoPedido();
+			}
+		}
+	}
+	
+	public void consultarPedidosDomicilio() {
+		System.out.println("Los pedidos a domicilio son: ");
+		for(Pedido pedido: pedidos) {
+			if(pedido.getTipo().equals("DOMICILIO")) {
 				pedido.mostrarInfoPedido();
 			}
 		}
