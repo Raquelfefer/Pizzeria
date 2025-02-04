@@ -43,28 +43,28 @@ public class Pizzeria {
 	
 	public void mostrarPizzas() {
 		System.out.println("Lista de pizzas:");
-		for (Pizza pizza: pizzas) {
+		for (Pizza pizza: this.pizzas) {
 			pizza.mostrarInfoPizza();;
 		}
 	}
 	
 	public void mostrarPedidos() {
 		System.out.println("Lista de pedidos:");
-		for (Pedido pedido : pedidos) {
+		for (Pedido pedido : this.pedidos) {
 			pedido.mostrarInfoPedido();;
 		}
 	}
 	
 	public void mostrarClientes() {
 		System.out.println("Lista de clientes:");
-		for (Cliente cliente: clientes) {
+		for (Cliente cliente: this.clientes) {
 			cliente.mostrarInfoCliente();
 		}
 	}
 	
 
 	public void consultarClienteTelefono(String telefono) {
-		for (Cliente cliente : clientes) {
+		for (Cliente cliente : this.clientes) {
 			if (cliente.getTelefono().equals(cliente.getTelefono())) {
 				cliente.mostrarInfoCliente();
 			}
@@ -77,7 +77,7 @@ public class Pizzeria {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
 		System.out.println("Estas pizzas tienen " + ingrediente);
-		for (Pizza pizza: pizzas) {
+		for (Pizza pizza: this.pizzas) {
 			if(pizza.getIngredientes().contains(ingrediente)) {
 				System.out.println(pizza.getNombre());
 			}
@@ -92,7 +92,7 @@ public class Pizzeria {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
 		System.out.println("Estas pizzas no tienen " + ingrediente);
-		for (Pizza pizza : pizzas) {
+		for (Pizza pizza : this.pizzas) {
 			if(!(pizza.getIngredientes().contains(ingrediente))) {
 				System.out.println(pizza.getNombre());
 			}
@@ -105,7 +105,7 @@ public class Pizzeria {
 	
 	public void consultarPedidosLocal() {
 		System.out.println("Los pedidos consumidos en local son: ");
-		for(Pedido pedido : pedidos) {
+		for(Pedido pedido : this.pedidos) {
 			if(pedido.getTipo().equals("LOCAL")) {
 				pedido.mostrarInfoPedido();
 			}
@@ -114,7 +114,7 @@ public class Pizzeria {
 	
 	public void consultarPedidosRecoger() {
 		System.out.println("Los pedidos para recoger son: ");
-		for(Pedido pedido: pedidos) {
+		for(Pedido pedido: this.pedidos) {
 			if(pedido.getTipo().equals("RECOGER")) {
 				pedido.mostrarInfoPedido();
 			}
