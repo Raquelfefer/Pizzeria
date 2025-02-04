@@ -41,7 +41,6 @@ public class Main {
 				break;
 
 			case 4:
-				Pizza p = verPizzas(List);
 				pizzeria.mostrarPizzas();
 			}
 
@@ -78,10 +77,8 @@ public class Main {
 		int idCliente = sc.nextInt();
 		System.out.println("Tipo de entrega: ");
 		String tipo = sc.next();
-		System.out.println("Pizza: ");
-		List<Pizza> pizza  = Pedido.getPizza();
 
-		return new Pedido(cliente, tipo, pizza);
+		return new Pedido(idCliente, tipo);
 	}
 
 	public static void verPizzas(List<Pizza> pizzas) {
