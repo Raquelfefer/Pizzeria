@@ -64,8 +64,10 @@ public class Pizzeria {
 
 	public void consultarClienteTelefono(String telefono) {
 		for (Cliente cliente : this.clientes) {
-			if (cliente.getTelefono().equals(cliente.getTelefono())) {
+			if (cliente.getTelefono().equals(telefono)) {
 				cliente.mostrarInfoCliente();
+			} else {
+				System.out.println("Este teléfono no corresponde a ningún cliente.");
 			}
 		}
 	}
