@@ -18,21 +18,21 @@ public class Pizzeria {
 		this.pedidos = new ArrayList<Pedido>();
 	}
 
-	public void registrarPizzas(Pizza pizza) {
+	public void addPizzas(Pizza pizza) {
 		if (pizza == null) {
 			throw new IllegalArgumentException("La pizza no puede ser nula.");
 		}
 		pizzas.add(pizza);
 	}
 
-	public void registrarClientes(Cliente cliente) {
+	public void addClientes(Cliente cliente) {
 		if (cliente == null) {
 			throw new IllegalArgumentException("El cliente no puede ser nulo.");
 		}
 		clientes.add(cliente);
 	}
 
-	public void realizarPedido(Pedido pedido) {
+	public void addPedido(Pedido pedido) {
 		if (pedido == null) {
 			throw new IllegalArgumentException("El pedido no puede ser nulo.");
 		}
