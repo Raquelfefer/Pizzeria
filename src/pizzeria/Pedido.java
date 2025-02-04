@@ -1,6 +1,7 @@
 package pizzeria;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import pizzeria.enums.EnumTipo;
@@ -15,13 +16,14 @@ public class Pedido {
 	private List<Pizza> pizza;
 	private static Pedido ultimoPedido;
 
-	public Pedido(Cliente cliente, double total, EnumTipo tipo, List<Pizza> pizza) {
+	public Pedido(Cliente cliente, EnumTipo tipo) {
 		contadorIdPedido++;
 		this.idPedido = contadorIdPedido;
 		setCliente(cliente);
 		this.fecha = LocalDateTime.now();
 		this.tipo = tipo;
-		this.pizza = pizza;
+		this.pizza = new ArrayList<Pizza>();
+		this.total = 0.0;
 		ultimoPedido = this;
 	}
 
