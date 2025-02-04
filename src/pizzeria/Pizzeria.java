@@ -1,14 +1,22 @@
 package pizzeria;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Pizzeria {
 	
-	private List<Cliente> clientes = new ArrayList<>();
-	private List<Pizza> pizzas = new ArrayList<>();
-	private List<Pedido> pedidos = new ArrayList<>();
+	private List<Cliente> clientes;
+	private List<Pizza> pizzas;
+	private List<Pedido> pedidos;
+	
+	public Pizzeria() {
+		this.clientes = new ArrayList<Cliente>();
+		this.pizzas = new ArrayList<Pizza>();
+		this.pedidos = new ArrayList<Pedido>();
+	}
 
 	public void registrarPizzas(Pizza pizza) {
 		if (pizza == null) {
@@ -93,15 +101,7 @@ public class Pizzeria {
 			}
 		}
 	}
-	
 
-	public void consultarPedidosHoy() {
-		for(Pedido pedido : pedidos) {
-			if(pedido.getFecha().equals(LocalDateTime.now())) {
-				pedido.mostrarInfoPedido();
-			}
-		}
-	}
 	
 	public void consultarPedidosLocal() {
 		System.out.println("Los pedidos consumidos en local son: ");
@@ -121,12 +121,14 @@ public class Pizzeria {
 		}
 	}
 	
-	public void consultarPedidosDomicilio() {
-		System.out.println("Los pedidos a domicilio son: ");
-		for(Pedido pedido: pedidos) {
-			if(pedido.getTipo().equals("DOMICILIO")) {
+	public void consultarPedidosHoy() {
+		LocalDateTime inicio = LocalDateTime.of(LocalDate.now(), LocalTime.NOON);
+		LocalDateTime fin = LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.MIDNIGHT);
+		for (Pedido pedido : this.pedidos) {
+			if (pedido.getFecha().isAfter(inicio) && pedido.getFecha().isBefore(fin)) {
 				pedido.mostrarInfoPedido();
 			}
+
 		}
 	}
 	
