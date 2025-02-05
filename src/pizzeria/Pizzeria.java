@@ -40,34 +40,38 @@ public class Pizzeria {
 	}
 
 	public void mostrarPizzas() {
-		if(pizzas == null || pizzas.size() == 0) {
+		if (pizzas == null || pizzas.size() == 0) {
 			System.out.println("No hay pizzas en la lista.");
-		}else {
-			System.out.println("Lista de pizzas:");
+		} else {
+			System.out.println();
+			System.out.println("--- Lista de pizzas ---");
 			for (Pizza pizza : this.pizzas) {
-			pizza.mostrarInfoPizza();
+				pizza.mostrarInfoPizza();
+				System.out.println();
 			}
 		}
 	}
 
 	public void mostrarPedidos() {
-		if(pedidos == null || pedidos.size() == 0) {
+		if (pedidos == null || pedidos.size() == 0) {
 			System.out.println("No hay pedidos en la lista.");
-		}else {
-			System.out.println("Lista de pedidos:");
+		} else {
+			System.out.println("--- Lista de pedidos ---");
 			for (Pedido pedido : this.pedidos) {
-			pedido.mostrarInfoPedido();
+				pedido.mostrarInfoPedido();
+				System.out.println();
 			}
 		}
 	}
 
 	public void mostrarClientes() {
-		if(clientes == null || clientes.size() == 0) {
+		if (clientes == null || clientes.size() == 0) {
 			System.out.println("No hay clientes en la lista.");
-		}else {
-			System.out.println("Lista de clientes:");
+		} else {
+			System.out.println("--- Lista de clientes ---");
 			for (Cliente cliente : this.clientes) {
-			cliente.mostrarInfoCliente();
+				cliente.mostrarInfoCliente();
+				System.out.println();
 			}
 		}
 	}
@@ -76,9 +80,8 @@ public class Pizzeria {
 		for (Cliente cliente : this.clientes) {
 			if (cliente.getTelefono().equals(telefono)) {
 				cliente.mostrarInfoCliente();
-			} else {
-				System.out.println("Este teléfono no corresponde a ningún cliente.");
 			}
+
 		}
 	}
 
@@ -86,7 +89,7 @@ public class Pizzeria {
 		if (ingrediente == null || ingrediente.isBlank()) {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
-		System.out.println("Estas pizzas tienen " + ingrediente);
+		System.out.println("Estas pizzas tienen " + ingrediente + ":");
 		for (Pizza pizza : this.pizzas) {
 			if (pizza.getIngredientes().contains(ingrediente)) {
 				System.out.println(pizza.getNombre());
@@ -100,7 +103,7 @@ public class Pizzeria {
 		if (ingrediente == null || ingrediente.isBlank()) {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
-		System.out.println("Estas pizzas no tienen " + ingrediente);
+		System.out.println("Estas pizzas no tienen " + ingrediente + ":");
 		for (Pizza pizza : this.pizzas) {
 			if (!(pizza.getIngredientes().contains(ingrediente))) {
 				System.out.println(pizza.getNombre());
