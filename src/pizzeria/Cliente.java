@@ -1,13 +1,18 @@
 package pizzeria;
 
 public class Cliente {
+	
+	private int id;
 	private String nombre;
 	private String direccion;
 	private String email;
 	private String telefono;
 	private double dineroDisponible;
+	
+	private static int idUlt = 1;
 
 	public Cliente(String nombre, String direccion, String email, String telefono) {
+		this.id = idUlt++;
 		setNombre(nombre);
 		setDireccion(direccion);
 		setEmail(email);
@@ -16,13 +21,18 @@ public class Cliente {
 	}
 
 	public Cliente(String nombre, String direccion, String email, String telefono, double dineroDisponible) {
+		this.id = idUlt++;
 		setNombre(nombre);
 		setDireccion(direccion);
 		setEmail(email);
 		setTelefono(telefono);
 		setDinero(dineroDisponible);
 	}
-
+	
+	public int getId() {
+		return this.id;
+	}
+	
 	public double getDinero() {
 		return dineroDisponible;
 	}
@@ -89,6 +99,6 @@ public class Cliente {
 	}
 	
 	public void mostrarInfoCliente() {
-		System.out.printf("Nombre: %s%nDirección: %s%nEmail: %s%nTelefono: %s%n", nombre, direccion, email, telefono);
+		System.out.printf("Id: %s%nNombre: %s%nDirección: %s%nEmail: %s%nTelefono: %s%n", id, nombre, direccion, email, telefono);
 	}
 }

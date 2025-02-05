@@ -40,10 +40,13 @@ public class Main {
 				pizzeria.addClientes(c);
 				break;
 
-//			case 3:
-//				Pedido pe = nuevoPedido(sc);
-//				pizzeria.addPedido(pe);
-//				break;
+			case 3:
+				Pedido pe = nuevoPedido(sc);
+				pizzeria.addPedido(pe);
+				do {
+					System.out.printf("¿Qué pizza quieres añadir: \n");
+				}
+				break;
 
 			case 4:
 				pizzeria.mostrarPizzas();
@@ -131,14 +134,14 @@ public class Main {
 		return new Cliente(nombre, direccion, email, telefono);
 	}
 
-//	public static Pedido nuevoPedido(Scanner sc) {
-//		System.out.println("Cliente: ");
-//		int cliente = sc.nextInt();
-//		System.out.println("Tipo de entrega: ");
-//		String tipo = sc.next();
-//
-//		return new Pedido(idCliente, tipo);
-//	}
+	public static Pedido nuevoPedido(Scanner sc) {
+		System.out.println("Cliente: ");
+		int cliente = sc.nextInt();
+		System.out.println("Tipo de entrega: ");
+		String tipo = sc.next();
+
+		return new Pedido(cliente, tipo);
+	}
 
 	public static void verPizzas(List<Pizza> pizzas) {
 		for (Pizza p : pizzas) {

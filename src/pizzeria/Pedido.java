@@ -9,7 +9,7 @@ import pizzeria.enums.EnumTipo;
 public class Pedido {
 	private static int contadorIdPedido = 0;
 	private int idPedido;
-	private Cliente cliente;
+	private int idCliente;
 	private LocalDateTime fecha;
 	private double total;
 	private EnumTipo tipo;
@@ -17,12 +17,12 @@ public class Pedido {
 	private static Pedido ultimoPedido;
 
 
-	public Pedido(Cliente cliente, EnumTipo tipo) {
+	public Pedido(int cliente, String tipo) {
 		contadorIdPedido++;
 		this.idPedido = contadorIdPedido;
 		setCliente(cliente);
 		this.fecha = LocalDateTime.now();
-		this.tipo = tipo;
+		setTipo(tipo);
 		this.pizzas = new ArrayList<Pizza>();
 		this.total = 0.0;
 		ultimoPedido = this;
@@ -33,15 +33,19 @@ public class Pedido {
 		return ultimoPedido;
 	}
 
-	public void setCliente(Cliente cliente) {
-		if (cliente == null) {
-			throw new IllegalArgumentException("El nombre del cliente no puede ser nulo. ");
+	public void setCliente(int idCliente) {
+		if (idCliente <= 0) {
+			throw new IllegalArgumentException("El id del cliente no puede ser nulo. ");
 		}
-		this.cliente = cliente;
+		this.idCliente = idCliente;
+	}
+	
+	public void setTipo(String tipo) {
+		this.tipo = EnumTipo.valueOf(tipo);
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public int getCliente() {
+		return idCliente;
 	}
 
 	public int getIdPedido() {
@@ -56,24 +60,29 @@ public class Pedido {
 		return total;
 	}
 
-	public EnumTipo getTipo() {
-		return tipo;
+	public String getTipo() {
+		return tipo.toString();
 	}
 
 	public List<Pizza> getPizza() {
 		return pizzas;
 	}
 
-	public void addPizzaPedido(Pizza pizza) {
-		if (pizza == null) {
+	public void addPizzaPedido(String nombrePizza) {
+		if (nombrePizza == null) {
 			throw new IllegalArgumentException("La pizza no esta en el sistema");
+		}
+		for(Pizza p : Pizzeria.getPizzas() ){
+			if(p.getNombre().equals(nombrePizza)) {
+				
+			}
 		}
 		this.total += pizza.getPrecio();
 	}
 
 	
 	public void mostrarInfoPedido() {
-		System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, cliente.getNombre() , fecha, total, tipo);
+		System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, idCliente , fecha, total, tipo);
 		System.out.print("Pizzas: ");
 		for (Pizza pizza : pizzas) {
 			System.out.println("- " + pizza.getNombre());
