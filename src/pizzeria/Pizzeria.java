@@ -96,11 +96,7 @@ public class Pizzeria {
 		if (ingrediente == null || ingrediente.isBlank()) {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
-<<<<<<< Updated upstream
 		System.out.println("Estas pizzas tienen " + ingrediente + ":");
-=======
-		System.out.println("Estas pizzas tienen " + ingrediente + " :");
->>>>>>> Stashed changes
 		for (Pizza pizza : this.pizzas) {
 			if (pizza.getIngredientes().contains(ingrediente)) {
 				System.out.println(pizza.getNombre());
@@ -114,11 +110,7 @@ public class Pizzeria {
 		if (ingrediente == null || ingrediente.isBlank()) {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
-<<<<<<< Updated upstream
 		System.out.println("Estas pizzas no tienen " + ingrediente + ":");
-=======
-		System.out.println("Estas pizzas no tienen " + ingrediente + " :");
->>>>>>> Stashed changes
 		for (Pizza pizza : this.pizzas) {
 			if (!(pizza.getIngredientes().contains(ingrediente))) {
 				System.out.println(pizza.getNombre());
