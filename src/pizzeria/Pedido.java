@@ -13,8 +13,9 @@ public class Pedido {
 	private LocalDateTime fecha;
 	private double total;
 	private EnumTipo tipo;
-	private List<Pizza> pizzas;
+	private List<Pizza> pizzasPedido;
 	private static Pedido ultimoPedido;
+	
 
 
 	public Pedido(int cliente, String tipo) {
@@ -23,11 +24,11 @@ public class Pedido {
 		setCliente(cliente);
 		this.fecha = LocalDateTime.now();
 		setTipo(tipo);
-		this.pizzas = new ArrayList<Pizza>();
+		this.pizzasPedido = new ArrayList<Pizza>();
 		this.total = 0.0;
 		ultimoPedido = this;
 	}
-
+	
 	
 	public Pedido getUltimoPedido() {
 		return ultimoPedido;
@@ -65,26 +66,31 @@ public class Pedido {
 	}
 
 	public List<Pizza> getPizza() {
-		return pizzas;
+		return pizzasPedido;
 	}
 
 	public void addPizzaPedido(String nombrePizza) {
-		if (nombrePizza == null) {
-			throw new IllegalArgumentException("La pizza no esta en el sistema");
+		if (nombrePizza == null || nombrePizza.isBlank()) {
+			throw new IllegalArgumentException("El campo no puede ser nulo o en blanco.");
 		}
-		for(Pizza p : Pizzeria.getPizzas() ){
+		boolean esta = false;
+		for(Pizza p : Pizzeria.getPizzas()){
 			if(p.getNombre().equals(nombrePizza)) {
-				
+				pizzasPedido.add(p);
+				this.total += p.getPrecio();
+				esta = true;
 			}
 		}
-		this.total += pizza.getPrecio();
+		if(esta == false) {
+			throw new IllegalArgumentException("Esta pizza no se encuentra en el sistema.");
+		}
 	}
 
 	
 	public void mostrarInfoPedido() {
 		System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, idCliente , fecha, total, tipo);
-		System.out.print("Pizzas: ");
-		for (Pizza pizza : pizzas) {
+		System.out.println("Pizzas: ");
+		for (Pizza pizza : pizzasPedido) {
 			System.out.println("- " + pizza.getNombre());
 		}
 	}

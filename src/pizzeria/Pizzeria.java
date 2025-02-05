@@ -9,7 +9,7 @@ import java.util.List;
 public class Pizzeria {
 
 	private List<Cliente> clientes;
-	private List<Pizza> pizzas;
+	private static List<Pizza> pizzas;
 	private List<Pedido> pedidos;
 
 	public Pizzeria() {
@@ -20,7 +20,7 @@ public class Pizzeria {
 	
 	
 
-	public List<Pizza> getPizzas() {
+	public static List<Pizza> getPizzas() {
 		return pizzas;
 	}
 
@@ -83,24 +83,23 @@ public class Pizzeria {
 	}
 
 	public void consultarClienteTelefono(String telefono) {
+		boolean esta = false;
 		for (Cliente cliente : this.clientes) {
 			if (cliente.getTelefono().equals(telefono)) {
 				cliente.mostrarInfoCliente();
+				esta = true;
 			}
-
+		}
+		if(esta == false) {
+			System.out.println("El número no corresponde a ningún cliente.");
 		}
 	}
 
 	public void pizzasConIngrediente(String ingrediente) {
-		System.out.println("Introduce el ingrediente: ");
 		if (ingrediente == null || ingrediente.isBlank()) {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
-<<<<<<< Updated upstream
 		System.out.println("Estas pizzas tienen " + ingrediente + ":");
-=======
-		System.out.println("Estas pizzas tienen " + ingrediente + " :");
->>>>>>> Stashed changes
 		for (Pizza pizza : this.pizzas) {
 			if (pizza.getIngredientes().contains(ingrediente)) {
 				System.out.println(pizza.getNombre());
@@ -114,11 +113,7 @@ public class Pizzeria {
 		if (ingrediente == null || ingrediente.isBlank()) {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
-<<<<<<< Updated upstream
 		System.out.println("Estas pizzas no tienen " + ingrediente + ":");
-=======
-		System.out.println("Estas pizzas no tienen " + ingrediente + " :");
->>>>>>> Stashed changes
 		for (Pizza pizza : this.pizzas) {
 			if (!(pizza.getIngredientes().contains(ingrediente))) {
 				System.out.println(pizza.getNombre());
@@ -129,29 +124,44 @@ public class Pizzeria {
 	}
 
 	public void consultarPedidosLocal() {
-		System.out.println("Los pedidos consumidos en local son: ");
-		for (Pedido pedido : this.pedidos) {
-			if (pedido.getTipo().equals("LOCAL")) {
-				pedido.mostrarInfoPedido();
+		boolean esta = false;
+			System.out.println("Los pedidos consumidos en local son: ");
+			for (Pedido pedido : this.pedidos) {
+				if (pedido.getTipo().equals("LOCAL")) {
+					pedido.mostrarInfoPedido();
+					esta = true;
+				}
 			}
-		}
+			if(esta == false) {
+				System.out.println("No hay pedidos consumidos en local en la lista.");
+			}
 	}
 
 	public void consultarPedidosRecoger() {
+		boolean esta = false;
 		System.out.println("Los pedidos para recoger son: ");
 		for (Pedido pedido : this.pedidos) {
 			if (pedido.getTipo().equals("RECOGER")) {
 				pedido.mostrarInfoPedido();
+				esta = true;
 			}
+		}
+		if(esta == false) {
+			System.out.println("No hay pedidos para recoger en la lista.");
 		}
 	}
 
 	public void consultarPedidosDomicilio() {
+		boolean esta = false;
 		System.out.println("Los pedidos a domicilio son: ");
 		for (Pedido pedido : pedidos) {
 			if (pedido.getTipo().equals("DOMICILIO")) {
 				pedido.mostrarInfoPedido();
+				esta = true;
 			}
+		}
+		if(esta == false) {
+			System.out.println("No hay pedidos a domicilio en la lista.");
 		}
 	}
 
@@ -163,6 +173,12 @@ public class Pizzeria {
 				pedido.mostrarInfoPedido();
 			}
 
+		}
+	}
+	
+	public void mostrarNombrePizza() {
+		for(Pizza p : pizzas) {
+			System.out.println("- " + p.getNombre());
 		}
 	}
 
