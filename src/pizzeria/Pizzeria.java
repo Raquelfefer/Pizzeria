@@ -100,28 +100,36 @@ public class Pizzeria {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
 		System.out.println("Estas pizzas tienen " + ingrediente + ":");
+		boolean esta = false;
 		for (Pizza pizza : this.pizzas) {
 			if (pizza.getIngredientes().contains(ingrediente)) {
 				System.out.println(pizza.getNombre());
-			} else {
+				esta = true;
+			}
+		}
+		if(esta == false) {
 				System.out.println("No hay pizzas con este ingrediente.");
 			}
 		}
-	}
+	
 
 	public void pizzasSinIngrediente(String ingrediente) {
 		if (ingrediente == null || ingrediente.isBlank()) {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
 		System.out.println("Estas pizzas no tienen " + ingrediente + ":");
+		boolean esta = false;
 		for (Pizza pizza : this.pizzas) {
 			if (!(pizza.getIngredientes().contains(ingrediente))) {
 				System.out.println(pizza.getNombre());
-			} else {
+				esta = true;
+			} 
+		}
+		if(esta == false) {
 				System.out.println("No hay pizzas con estas características.");
 			}
 		}
-	}
+	
 
 	public void consultarPedidosLocal() {
 		boolean esta = false;
@@ -166,13 +174,12 @@ public class Pizzeria {
 	}
 
 	public void consultarPedidosHoy() {
-		LocalDateTime inicio = LocalDateTime.of(LocalDate.now(), LocalTime.NOON);
+		LocalDateTime inicio = LocalDateTime.of(LocalDate.now(), LocalTime.of(10,00));
 		LocalDateTime fin = LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.MIDNIGHT);
 		for (Pedido pedido : this.pedidos) {
 			if (pedido.getFecha().isAfter(inicio) && pedido.getFecha().isBefore(fin)) {
 				pedido.mostrarInfoPedido();
 			}
-
 		}
 	}
 	

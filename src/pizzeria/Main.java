@@ -158,10 +158,5 @@ public class Main {
 		return new Pedido(cliente, tipo);
 	}
 
-	public static void verPizzas(List<Pizza> pizzas) {
-		for (Pizza p : pizzas) {
-			System.out.println(p);
-		}
-	}
-
+	
 }

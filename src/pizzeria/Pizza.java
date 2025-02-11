@@ -74,6 +74,7 @@ public class Pizza {
 		if(pizzaMasCara == null) {
 			System.out.println("No hay pizzas en el sistema.");
 		}else {
+			System.out.println("La pizza más cara es:");
 			pizzaMasCara.mostrarInfoPizza();
 		}
 	}
@@ -82,6 +83,7 @@ public class Pizza {
 		if(pizzaMasBarata == null) {
 			System.out.println("No hay pizzas en el sistema.");
 		}else {
+			System.out.println("La pizza más barata es:");
 			pizzaMasBarata.mostrarInfoPizza();
 		}
 	}
