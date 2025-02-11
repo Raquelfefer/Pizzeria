@@ -71,6 +71,7 @@ public class Pedido {
 			throw new IllegalArgumentException("El campo no puede ser menor o igual a 0.");
 		}
 		boolean esta = false;
+// esta buscando en la lista de pizzas
 		for (Pizza p : Pizzeria.getPizzas()) {
 
 			if (p.getId() == idPizza) {
@@ -105,20 +106,26 @@ public class Pedido {
 		if (idPizza <= 0) {
 			throw new IllegalArgumentException("El campo no puede ser menor o igual a 0.");
 		}
-		boolean esta = false;
-		for (Pizza p : Pizzeria.getPizzas()) {
+
+		Pizza eliminarPizza = null;
+
+// busca la pizza en la lista del pedido
+		for (Pizza p : pizzasPedido) {
 			if (p.getId() == idPizza) {
-				pizzasPedido.remove(idPizza);
-				this.total -= p.getPrecio();
-				esta = true;
-			}
-			if (esta == false) {
-				throw new IllegalArgumentException("Esta pizza no se encuentra en el pedido.");
+				eliminarPizza = p;
 			}
 		}
+// elimina la pizza si la encuentra
+		if (eliminarPizza != null) {
+			pizzasPedido.remove(eliminarPizza);
+			this.total -= eliminarPizza.getPrecio();
+		} else {
+			throw new IllegalArgumentException("Esta pizza no se encuentra en el pedido.");
+		}
 	}
+
 	public void mostrarPizzasPedido() {
-		for(Pizza p : pizzasPedido) {
+		for (Pizza p : pizzasPedido) {
 			System.out.println("- " + p.getId() + " " + p.getNombre());
 		}
 	}
