@@ -5,12 +5,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Pizzeria {
 
 	private List<Cliente> clientes;
 	private static List<Pizza> pizzas;
-	private List<Pedido> pedidos;
+	private static List<Pedido> pedidos;
 
 	public Pizzeria() {
 		this.clientes = new ArrayList<Cliente>();
@@ -22,6 +23,10 @@ public class Pizzeria {
 
 	public static List<Pizza> getPizzas() {
 		return pizzas;
+	}
+	
+	public static List<Pedido> getPedido(){
+		return pedidos;
 	}
 
 	public void addPizzas(Pizza pizza) {
@@ -185,8 +190,10 @@ public class Pizzeria {
 	
 	public void mostrarNombrePizza() {
 		for(Pizza p : pizzas) {
-			System.out.println(p.getId() + " " + p.getNombre());
+			System.out.println("- " + p.getId() + " " + p.getNombre());
 		}
 	}
 
+
+	
 }
