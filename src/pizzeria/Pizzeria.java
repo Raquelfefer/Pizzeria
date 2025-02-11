@@ -5,11 +5,15 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Pizzeria {
 	private List<Cliente> clientes;
 	private static List<Pizza> pizzas;
-	private List<Pedido> pedidos;
+
+	private static List<Pedido> pedidos;
+
+
 	public Pizzeria() {
 
 		this.clientes = new ArrayList<Cliente>();
@@ -21,6 +25,11 @@ public class Pizzeria {
 		return pizzas;
 	}
 	
+
+	public static List<Pedido> getPedido(){
+		return pedidos;
+	}
+
 	public void addPizzas(Pizza pizza) {
 		if (pizza == null) {
 			throw new IllegalArgumentException("La pizza no puede ser nula.");
@@ -102,12 +111,14 @@ public class Pizzeria {
 			if (pizza.getIngredientes().contains(ingrediente)) {
 				System.out.println(pizza.getNombre());
 				esta = true;
+
 			}
 		}
-		if (esta == false) {
-			System.out.println("No hay pizzas con este ingrediente.");
+		if(esta == false) {
+				System.out.println("No hay pizzas con este ingrediente.");
+			}
 		}
-	}
+	
 
 	public void pizzasSinIngrediente(String ingrediente) {
 		if (ingrediente == null || ingrediente.isBlank()) {
@@ -120,13 +131,14 @@ public class Pizzeria {
 			if (!(pizza.getIngredientes().contains(ingrediente))) {
 				System.out.println(pizza.getNombre());
 				esta = true;
+
+			} 
+		}
+		if(esta == false) {
+				System.out.println("No hay pizzas con estas características.");
 			}
 		}
-
-		if (esta == false) {
-			System.out.println("No hay pizzas con estas características.");
-		}
-	}
+	
 
 	public void consultarPedidosLocal() {
 		boolean esta = false;
@@ -172,7 +184,8 @@ public class Pizzeria {
 		}
 	}
 	public void consultarPedidosHoy() {
-		LocalDateTime inicio = LocalDateTime.of(LocalDate.now(), LocalTime.of(10, 00));
+
+		LocalDateTime inicio = LocalDateTime.of(LocalDate.now(), LocalTime.of(10,00));
 		LocalDateTime fin = LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.MIDNIGHT);
 		for (Pedido pedido : this.pedidos) {
 			if (pedido.getFecha().isAfter(inicio) && pedido.getFecha().isBefore(fin)) {
@@ -182,11 +195,14 @@ public class Pizzeria {
 		}
 	}
 	public void mostrarNombrePizza() {
-		for (Pizza p : pizzas) {
-			System.out.println("- " + p.getNombre());
 
+		for(Pizza p : pizzas) {
+			System.out.println("- " + p.getId() + " " + p.getNombre());
 		}
 
 	}
 
+
+	
 }
+

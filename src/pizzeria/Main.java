@@ -24,7 +24,8 @@ public class Main {
 					+ "\n5. Ver pedidos \n6. Ver clientes \n7. Consultar cliente mediante su telefono"
 					+ "\n8. Buscar pizzas con ingrediente \n9. Buscar pizza sin ingrediente \n10. Pedidos de hoy"
 					+ "\n11. Pedidos consumidos en el local \n12. Pedidos para recoger \n13. Pedidos a domicilio"
-					+ "\n14. Pizza mas cara \n15. Pizza mas barata \n16. Ultimo pedido realizado \n17. Salir");
+					+ "\n14. Pizza mas cara \n15. Pizza mas barata \n16. Ultimo pedido realizado \n17. Eliminar pizza de pedido \n"
+					+ "18. Salir del menú");
 
 			System.out.println();
 			System.out.println();
@@ -44,16 +45,27 @@ public class Main {
 			case 3:
 				Pedido pe = nuevoPedido(sc);
 				pizzeria.addPedido(pe);
-				String p1;
+				int p1;
 				do {
 					System.out.println("¿Qué pizza quieres añadir?");
 					pizzeria.mostrarNombrePizza();
-					System.out.println("Si no quieres añadir más pizzas presiona 1.");
-					p1 = sc.next();
-					if (!p1.equals("1")) {
+
+					System.out.println("Si no quieres añadir más pizzas presiona 0.");
+					p1 = sc.nextInt();
+					if (p1 != 0) {
 						pe.addPizzaPedido(p1);
 					}
-				} while (!p1.equals("1"));
+				} while (p1 != 0);
+
+				do {
+					System.out.println("¿Que pizza quieres elimian?");
+					pe.mostrarPizzasPedido();
+					System.out.println("Si no quieres eliminar las pizzas, pulsa 0. ");
+					p1 = sc.nextInt();
+					if (p1 != 0) {
+						pe.delPizzaPedido(p1);
+					}
+				} while (p1 != 0);
 				break;
 
 			case 4:
@@ -113,15 +125,22 @@ public class Main {
 			case 16:
 				Pedido.mostrarUltimoPedido();
 				break;
+
+			case 17:
+				editarPedido(sc);
+				break;
 			default:
-				if (opcion != 17) {
+
+				if (opcion != 18) {
+
 					System.out.println("Esta opción no es válida.");
 				} else {
 					System.out.println("Ha salido del menú.");
 				}
 				break;
 			}
-		} while (opcion != 17);
+
+		} while (opcion != 18);
 
 	}
 
@@ -158,10 +177,22 @@ public class Main {
 		return new Pedido(cliente, tipo);
 	}
 
-	public static void verPizzas(List<Pizza> pizzas) {
-		for (Pizza p : pizzas) {
-			System.out.println(p);
+	public static void editarPedido(Scanner sc) {
+		System.out.println("Introduce el id del pedido: ");
+		int pe = sc.nextInt();
+		for (Pedido p : Pizzeria.getPedido()) {
+			if (p.getIdPedido() == pe) {
+				do {
+					System.out.println("¿Que pizza quieres eliminar?");
+					p.mostrarPizzasPedido();
+					System.out.println("Si no quieres eliminar las pizzas, pulsa 0. ");
+					pe = sc.nextInt();
+					if (pe != 0) {
+						p.delPizzaPedido(pe);
+					}
+				} while (pe != 0);
+			}
 		}
 	}
-	
+
 }
