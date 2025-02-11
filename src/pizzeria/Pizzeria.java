@@ -7,23 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pizzeria {
-
 	private List<Cliente> clientes;
 	private static List<Pizza> pizzas;
 	private List<Pedido> pedidos;
-
 	public Pizzeria() {
+
 		this.clientes = new ArrayList<Cliente>();
 		this.pizzas = new ArrayList<Pizza>();
 		this.pedidos = new ArrayList<Pedido>();
 	}
-	
-	
 
 	public static List<Pizza> getPizzas() {
 		return pizzas;
 	}
-
+	
 	public void addPizzas(Pizza pizza) {
 		if (pizza == null) {
 			throw new IllegalArgumentException("La pizza no puede ser nula.");
@@ -90,7 +87,7 @@ public class Pizzeria {
 				esta = true;
 			}
 		}
-		if(esta == false) {
+		if (esta == false) {
 			System.out.println("El número no corresponde a ningún cliente.");
 		}
 	}
@@ -100,12 +97,15 @@ public class Pizzeria {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
 		System.out.println("Estas pizzas tienen " + ingrediente + ":");
+		boolean esta = false;
 		for (Pizza pizza : this.pizzas) {
 			if (pizza.getIngredientes().contains(ingrediente)) {
 				System.out.println(pizza.getNombre());
-			} else {
-				System.out.println("No hay pizzas con este ingrediente.");
+				esta = true;
 			}
+		}
+		if (esta == false) {
+			System.out.println("No hay pizzas con este ingrediente.");
 		}
 	}
 
@@ -113,28 +113,33 @@ public class Pizzeria {
 		if (ingrediente == null || ingrediente.isBlank()) {
 			throw new IllegalArgumentException("El ingrediente no puede ser nulo o en blanco.");
 		}
+
 		System.out.println("Estas pizzas no tienen " + ingrediente + ":");
+		boolean esta = false;
 		for (Pizza pizza : this.pizzas) {
 			if (!(pizza.getIngredientes().contains(ingrediente))) {
 				System.out.println(pizza.getNombre());
-			} else {
-				System.out.println("No hay pizzas con estas características.");
+				esta = true;
 			}
+		}
+
+		if (esta == false) {
+			System.out.println("No hay pizzas con estas características.");
 		}
 	}
 
 	public void consultarPedidosLocal() {
 		boolean esta = false;
-			System.out.println("Los pedidos consumidos en local son: ");
-			for (Pedido pedido : this.pedidos) {
-				if (pedido.getTipo().equals("LOCAL")) {
-					pedido.mostrarInfoPedido();
-					esta = true;
-				}
+		System.out.println("Los pedidos consumidos en local son: ");
+		for (Pedido pedido : this.pedidos) {
+			if (pedido.getTipo().equals("LOCAL")) {
+				pedido.mostrarInfoPedido();
+				esta = true;
 			}
-			if(esta == false) {
-				System.out.println("No hay pedidos consumidos en local en la lista.");
-			}
+		}
+		if (esta == false) {
+			System.out.println("No hay pedidos consumidos en local en la lista.");
+		}
 	}
 
 	public void consultarPedidosRecoger() {
@@ -145,13 +150,15 @@ public class Pizzeria {
 				pedido.mostrarInfoPedido();
 				esta = true;
 			}
+
 		}
-		if(esta == false) {
+		if (esta == false) {
 			System.out.println("No hay pedidos para recoger en la lista.");
 		}
 	}
 
 	public void consultarPedidosDomicilio() {
+
 		boolean esta = false;
 		System.out.println("Los pedidos a domicilio son: ");
 		for (Pedido pedido : pedidos) {
@@ -160,26 +167,26 @@ public class Pizzeria {
 				esta = true;
 			}
 		}
-		if(esta == false) {
+		if (esta == false) {
 			System.out.println("No hay pedidos a domicilio en la lista.");
 		}
 	}
-
 	public void consultarPedidosHoy() {
-		LocalDateTime inicio = LocalDateTime.of(LocalDate.now(), LocalTime.NOON);
+		LocalDateTime inicio = LocalDateTime.of(LocalDate.now(), LocalTime.of(10, 00));
 		LocalDateTime fin = LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.MIDNIGHT);
 		for (Pedido pedido : this.pedidos) {
 			if (pedido.getFecha().isAfter(inicio) && pedido.getFecha().isBefore(fin)) {
 				pedido.mostrarInfoPedido();
-			}
 
+			}
 		}
 	}
-	
 	public void mostrarNombrePizza() {
-		for(Pizza p : pizzas) {
+		for (Pizza p : pizzas) {
 			System.out.println("- " + p.getNombre());
+
 		}
+
 	}
 
 }

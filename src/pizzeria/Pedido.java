@@ -15,8 +15,6 @@ public class Pedido {
 	private EnumTipo tipo;
 	private List<Pizza> pizzasPedido;
 	private static Pedido ultimoPedido;
-	
-
 
 	public Pedido(int cliente, String tipo) {
 		contadorIdPedido++;
@@ -28,8 +26,7 @@ public class Pedido {
 		this.total = 0.0;
 		ultimoPedido = this;
 	}
-	
-	
+
 	public Pedido getUltimoPedido() {
 		return ultimoPedido;
 	}
@@ -40,7 +37,7 @@ public class Pedido {
 		}
 		this.idCliente = idCliente;
 	}
-	
+
 	public void setTipo(String tipo) {
 		this.tipo = EnumTipo.valueOf(tipo);
 	}
@@ -74,32 +71,32 @@ public class Pedido {
 			throw new IllegalArgumentException("El campo no puede ser nulo o en blanco.");
 		}
 		boolean esta = false;
-		for(Pizza p : Pizzeria.getPizzas()){
-			if(p.getNombre().equals(nombrePizza)) {
+		for (Pizza p : Pizzeria.getPizzas()) {
+			if (p.getNombre().equals(nombrePizza)) {
 				pizzasPedido.add(p);
 				this.total += p.getPrecio();
 				esta = true;
 			}
 		}
-		if(esta == false) {
+		if (esta == false) {
 			throw new IllegalArgumentException("Esta pizza no se encuentra en el sistema.");
 		}
 	}
 
-	
 	public void mostrarInfoPedido() {
-		System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, idCliente , fecha, total, tipo);
+		System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, idCliente, fecha, total,
+				tipo);
 		System.out.println("Pizzas: ");
 		for (Pizza pizza : pizzasPedido) {
 			System.out.println("- " + pizza.getNombre());
 		}
 	}
-	
+
 	public static void mostrarUltimoPedido() {
 		if (ultimoPedido != null) {
-            System.out.println("Último pedido: ");
-            ultimoPedido.mostrarInfoPedido(); 
-        }
+			System.out.println("Último pedido: ");
+			ultimoPedido.mostrarInfoPedido();
+		}
 	}
 	
 	

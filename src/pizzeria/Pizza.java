@@ -13,6 +13,7 @@ public class Pizza {
 	private static double precioMasBarata = 100;
 
 	public Pizza(String nombre, String ingredientes, double precio) {
+
 		this.id = idUlt++;
 		setNombre(nombre);
 		setIngredientes(ingredientes);
@@ -21,13 +22,13 @@ public class Pizza {
 			pizzaMasCara = this;
 			precioMasCara = precio;
 		}
+
 		if (precio < precioMasBarata) {
 			pizzaMasBarata = this;
 			precioMasBarata = precio;
 		}
-	}
-	
 
+	}
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -49,42 +50,44 @@ public class Pizza {
 			throw new IllegalArgumentException("El nombre no puede ser nulo o en blanco.");
 		}
 		this.nombre = nombre;
-	}
 
+	}
 	public void setIngredientes(String ingredientes) {
 		if (ingredientes == null || ingredientes.isBlank()) {
 			throw new IllegalArgumentException("Los ingredientes no pueden ser nulos o en blanco.");
 		}
 		this.ingredientes = ingredientes;
-	}
 
+	}
 	public void setPrecio(double precio) {
 		if (precio < 0) {
 			throw new IllegalArgumentException("El precio de la pizza no pude ser menor a 0.");
 		}
 		this.precio = precio;
+
 	}
-	
-	
 	public void mostrarInfoPizza() {
 		System.out.printf("Nombre: %s%nIngredientes: %s%nPrecio: %.2f €.%n", nombre, ingredientes, precio);
 	}
-	
+
 	public static void mostrarPizzaMasCara() {
-		if(pizzaMasCara == null) {
+		if (pizzaMasCara == null) {
 			System.out.println("No hay pizzas en el sistema.");
-		}else {
+		} else {
+			System.out.println("La pizza más cara es:");
 			pizzaMasCara.mostrarInfoPizza();
 		}
+
 	}
-	
 	public static void mostrarPizzaMasBarata() {
-		if(pizzaMasBarata == null) {
+		if (pizzaMasBarata == null) {
 			System.out.println("No hay pizzas en el sistema.");
-		}else {
+		} else {
+			System.out.println("La pizza más barata es:");
 			pizzaMasBarata.mostrarInfoPizza();
+
 		}
+
 	}
-	
 
 }

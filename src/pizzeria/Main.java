@@ -1,3 +1,4 @@
+
 package pizzeria;
 
 import java.util.List;
@@ -49,10 +50,10 @@ public class Main {
 					pizzeria.mostrarNombrePizza();
 					System.out.println("Si no quieres añadir más pizzas presiona 1.");
 					p1 = sc.next();
-					if(!p1.equals("1")) {
+					if (!p1.equals("1")) {
 						pe.addPizzaPedido(p1);
 					}
-				}while(!p1.equals("1"));
+				} while (!p1.equals("1"));
 				break;
 
 			case 4:
@@ -113,15 +114,14 @@ public class Main {
 				Pedido.mostrarUltimoPedido();
 				break;
 			default:
-				if(opcion != 17) {
+				if (opcion != 17) {
 					System.out.println("Esta opción no es válida.");
-				}else {
+				} else {
 					System.out.println("Ha salido del menú.");
 				}
 				break;
 			}
 		} while (opcion != 17);
-		
 
 	}
 
@@ -163,5 +163,5 @@ public class Main {
 			System.out.println(p);
 		}
 	}
-
+	
 }

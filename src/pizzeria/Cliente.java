@@ -1,14 +1,14 @@
 package pizzeria;
 
 public class Cliente {
-	
+
 	private int id;
 	private String nombre;
 	private String direccion;
 	private String email;
 	private String telefono;
 	private double dineroDisponible;
-	
+
 	private static int idUlt = 1;
 
 	public Cliente(String nombre, String direccion, String email, String telefono) {
@@ -18,6 +18,7 @@ public class Cliente {
 		setEmail(email);
 		setTelefono(telefono);
 		this.dineroDisponible = 0.0;
+
 	}
 
 	public Cliente(String nombre, String direccion, String email, String telefono, double dineroDisponible) {
@@ -27,12 +28,13 @@ public class Cliente {
 		setEmail(email);
 		setTelefono(telefono);
 		setDinero(dineroDisponible);
+
 	}
-	
+
 	public int getId() {
 		return this.id;
 	}
-	
+
 	public double getDinero() {
 		return dineroDisponible;
 	}
@@ -80,6 +82,7 @@ public class Cliente {
 			if (caracter.matches("@")) {
 				arroba++;
 			}
+
 		}
 		if (arroba != 1) {
 			throw new IllegalArgumentException("Email no válido. Debe contener un arroba.");
@@ -97,8 +100,10 @@ public class Cliente {
 		}
 		this.direccion = direccion;
 	}
-	
+
 	public void mostrarInfoCliente() {
-		System.out.printf("Id: %s%nNombre: %s%nDirección: %s%nEmail: %s%nTelefono: %s%n", id, nombre, direccion, email, telefono);
+		System.out.printf("Id: %s%nNombre: %s%nDirección: %s%nEmail: %s%nTelefono: %s%n", id, nombre, direccion, email,
+				telefono);
 	}
+
 }
