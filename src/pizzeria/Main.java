@@ -43,16 +43,16 @@ public class Main {
 			case 3:
 				Pedido pe = nuevoPedido(sc);
 				pizzeria.addPedido(pe);
-				String p1;
+				int p1;
 				do {
 					System.out.println("¿Qué pizza quieres añadir?");
 					pizzeria.mostrarNombrePizza();
-					System.out.println("Si no quieres añadir más pizzas presiona 1.");
-					p1 = sc.next();
-					if(!p1.equals("1")) {
+					System.out.println("Si no quieres añadir más pizzas presiona 0.");
+					p1 = sc.nextInt();
+					if(p1 != 0) {
 						pe.addPizzaPedido(p1);
 					}
-				}while(!p1.equals("1"));
+				}while(p1 != 0);
 				break;
 
 			case 4:
@@ -158,5 +158,6 @@ public class Main {
 		return new Pedido(cliente, tipo);
 	}
 
+	
 	
 }

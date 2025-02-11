@@ -69,13 +69,13 @@ public class Pedido {
 		return pizzasPedido;
 	}
 
-	public void addPizzaPedido(String nombrePizza) {
-		if (nombrePizza == null || nombrePizza.isBlank()) {
-			throw new IllegalArgumentException("El campo no puede ser nulo o en blanco.");
+	public void addPizzaPedido(int idPizza) {
+		if (idPizza <= 0) {
+			throw new IllegalArgumentException("El campo no puede ser menor o igual a 0.");
 		}
 		boolean esta = false;
 		for(Pizza p : Pizzeria.getPizzas()){
-			if(p.getNombre().equals(nombrePizza)) {
+			if(p.getId() == idPizza) {
 				pizzasPedido.add(p);
 				this.total += p.getPrecio();
 				esta = true;

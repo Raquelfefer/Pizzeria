@@ -185,7 +185,7 @@ public class Pizzeria {
 	
 	public void mostrarNombrePizza() {
 		for(Pizza p : pizzas) {
-			System.out.println("- " + p.getNombre());
+			System.out.println(p.getId() + " " + p.getNombre());
 		}
 	}
 
