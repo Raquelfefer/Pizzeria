@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Pizzeria {
 	private List<Cliente> clientes;
-	List<Pizza> pizzas;
+	private List<Pizza> pizzas;
 	private List<Pedido> pedidos;
 
 
@@ -28,7 +28,6 @@ public class Pizzeria {
 		return pedidos;
 	}
 	
-
 	public void addPizzas(Pizza pizza) {
 		if (pizza == null) {
 			throw new IllegalArgumentException("La pizza no puede ser nula.");
