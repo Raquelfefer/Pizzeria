@@ -66,26 +66,12 @@ public class Pedido {
 		return pizzasPedido;
 	}
 
-	public void addPizzaPedido(int idPizza) {
-		if (idPizza <= 0) {
-			throw new IllegalArgumentException("El campo no puede ser menor o igual a 0.");
-		}
-		boolean esta = false;
-// esta buscando en la lista de pizzas
-		for (Pizza p : Pizzeria.getPizzas()) {
-
-			if (p.getId() == idPizza) {
-
-				pizzasPedido.add(p);
-				this.total += p.getPrecio();
-				esta = true;
-			}
-		}
-		if (esta == false) {
-			throw new IllegalArgumentException("Esta pizza no se encuentra en el sistema.");
-		}
+	public void addPizzaPedido(Pizza p) {
+			pizzasPedido.add(p);
+			this.total += p.getPrecio();	
 	}
 
+		
 	public void mostrarInfoPedido() {
 		System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, idCliente, fecha, total,
 				tipo);
@@ -129,5 +115,5 @@ public class Pedido {
 			System.out.println("- " + p.getId() + " " + p.getNombre());
 		}
 	}
-
+	
 }

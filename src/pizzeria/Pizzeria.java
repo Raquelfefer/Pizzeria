@@ -9,9 +9,8 @@ import java.util.Scanner;
 
 public class Pizzeria {
 	private List<Cliente> clientes;
-	private static List<Pizza> pizzas;
-
-	private static List<Pedido> pedidos;
+	List<Pizza> pizzas;
+	private List<Pedido> pedidos;
 
 
 	public Pizzeria() {
@@ -21,14 +20,14 @@ public class Pizzeria {
 		this.pedidos = new ArrayList<Pedido>();
 	}
 
-	public static List<Pizza> getPizzas() {
+	public List<Pizza> getPizzas() {
 		return pizzas;
 	}
 	
-
-	public static List<Pedido> getPedido(){
+	public List<Pedido> getPedido(){
 		return pedidos;
 	}
+	
 
 	public void addPizzas(Pizza pizza) {
 		if (pizza == null) {
@@ -201,8 +200,35 @@ public class Pizzeria {
 		}
 
 	}
+	
+	public Pizza comprobarIdPizza(int idPizza) {
+		boolean esta = false;
+		for(Pizza p : pizzas) {
+			if (p.getId() == idPizza) {
+				esta = true;
+				return p;
+			}
+		}
+		throw new IllegalArgumentException("Esta pizza no se encuentra en el sistema.");
+	}
 
-
+	public void editarPedido(Scanner sc) {
+		System.out.println("Introduce el id del pedido: ");
+		int pe = sc.nextInt();
+		for (Pedido p : pedidos) {
+			if (p.getIdPedido() == pe) {
+				do {
+					System.out.println("¿Que pizza quieres eliminar?");
+					p.mostrarPizzasPedido();
+					System.out.println("Si no quieres eliminar las pizzas, pulsa 0. ");
+					pe = sc.nextInt();
+					if (pe != 0) {
+						p.delPizzaPedido(pe);
+					}
+				} while (pe != 0);
+			}
+		}
+	}
 	
 }
 

@@ -49,11 +49,10 @@ public class Main {
 				do {
 					System.out.println("¿Qué pizza quieres añadir?");
 					pizzeria.mostrarNombrePizza();
-
 					System.out.println("Si no quieres añadir más pizzas presiona 0.");
 					p1 = sc.nextInt();
 					if (p1 != 0) {
-						pe.addPizzaPedido(p1);
+						pe.addPizzaPedido(pizzeria.comprobarIdPizza(p1));
 					}
 				} while (p1 != 0);
 
@@ -127,7 +126,7 @@ public class Main {
 				break;
 
 			case 17:
-				editarPedido(sc);
+				pizzeria.editarPedido(sc);;
 				break;
 			default:
 
@@ -177,22 +176,6 @@ public class Main {
 		return new Pedido(cliente, tipo);
 	}
 
-	public static void editarPedido(Scanner sc) {
-		System.out.println("Introduce el id del pedido: ");
-		int pe = sc.nextInt();
-		for (Pedido p : Pizzeria.getPedido()) {
-			if (p.getIdPedido() == pe) {
-				do {
-					System.out.println("¿Que pizza quieres eliminar?");
-					p.mostrarPizzasPedido();
-					System.out.println("Si no quieres eliminar las pizzas, pulsa 0. ");
-					pe = sc.nextInt();
-					if (pe != 0) {
-						p.delPizzaPedido(pe);
-					}
-				} while (pe != 0);
-			}
-		}
-	}
+	
 
 }
