@@ -1,10 +1,7 @@
 
 package pizzeria;
 
-import java.util.List;
 import java.util.Scanner;
-
-import pizzeria.enums.EnumTipo;
 
 public class Main {
 
@@ -31,6 +28,11 @@ public class Main {
 			System.out.println();
 			System.out.println("Introduce la opción:");
 			opcion = sc.nextInt();
+
+			if (opcion < 1 || opcion > 18) {
+				System.out.println("Opción no válida. Por favor, elige una opción del 1 al 18.");
+			}
+
 			switch (opcion) {
 			case 1:
 				Pizza p = nuevaPizza(sc);
@@ -126,7 +128,8 @@ public class Main {
 				break;
 
 			case 17:
-				pizzeria.editarPedido(sc);;
+				pizzeria.editarPedido(sc);
+				;
 				break;
 			default:
 
@@ -177,7 +180,5 @@ public class Main {
 
 		return new Pedido(cliente, tipo);
 	}
-
-	
 
 }

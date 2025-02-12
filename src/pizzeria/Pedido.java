@@ -42,8 +42,12 @@ public class Pedido {
 	}
 
 	public void setTipo(String tipo) {
-		this.tipo = EnumTipo.valueOf(tipo);
+	    if (tipo == null || !(tipo.equals("LOCAL") || tipo.equals("RECOGER") || tipo.equals("DOMICILIO"))) {
+	        throw new IllegalArgumentException("Tipo de entrega inválido. Debe ser LOCAL, RECOGER o DOMICILIO.");
+	    }
+	    this.tipo = EnumTipo.valueOf(tipo);
 	}
+
 
 	public int getCliente() {
 		return idCliente;
