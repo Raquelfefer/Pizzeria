@@ -73,8 +73,6 @@ public class Pizza {
 	public static void mostrarPizzaMasCara() {
 		if (pizzaMasCara == null) {
 			System.out.println("No hay pizzas en el sistema.");
-
-
 		}else {
 			System.out.println("La pizza más cara es:");
 			pizzaMasCara.mostrarInfoPizza();

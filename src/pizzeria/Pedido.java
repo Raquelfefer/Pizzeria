@@ -70,14 +70,15 @@ public class Pedido {
 			pizzasPedido.add(p);
 			this.total += p.getPrecio();	
 	}
-
-		
+	
 	public void mostrarInfoPedido() {
-		System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, idCliente, fecha, total,
+		if(!pizzasPedido.isEmpty()) {
+			System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, idCliente, fecha, total,
 				tipo);
-		System.out.println("Pizzas: ");
-		for (Pizza pizza : pizzasPedido) {
-			System.out.println("- " + pizza.getNombre());
+			System.out.println("Pizzas: ");
+			for (Pizza pizza : pizzasPedido) {
+				System.out.println("- " + pizza.getNombre());
+			}
 		}
 	}
 
