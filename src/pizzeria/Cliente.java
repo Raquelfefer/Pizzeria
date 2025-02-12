@@ -11,15 +11,6 @@ public class Cliente {
 
 	private static int idUlt = 1;
 
-	public Cliente(String nombre, String direccion, String email, String telefono) {
-		this.id = idUlt++;
-		setNombre(nombre);
-		setDireccion(direccion);
-		setEmail(email);
-		setTelefono(telefono);
-		this.dineroDisponible = 0.0;
-
-	}
 
 	public Cliente(String nombre, String direccion, String email, String telefono, double dineroDisponible) {
 		this.id = idUlt++;
@@ -101,8 +92,15 @@ public class Cliente {
 	}
 
 	public void mostrarInfoCliente() {
-		System.out.printf("Id: %s%nNombre: %s%nDirección: %s%nEmail: %s%nTelefono: %s%n", id, nombre, direccion, email,
-				telefono);
+		System.out.printf("Id: %s%nNombre: %s%nDirección: %s%nEmail: %s%nTelefono: %s%nDinero Disponible: %.2f%n", id, nombre, direccion, email,
+				telefono, dineroDisponible);
 	}
-
+	
+	public void restarSaldoDisponible(double total){
+		this.dineroDisponible -= total;
+	}
+	
+	public void aumentarSaldoDisponible(double total){
+		this.dineroDisponible += total;
+	}
 }

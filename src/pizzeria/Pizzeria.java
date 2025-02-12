@@ -201,30 +201,22 @@ public class Pizzeria {
 	}
 	
 	public Pizza comprobarIdPizza(int idPizza) {
-		boolean esta = false;
 		for(Pizza p : pizzas) {
 			if (p.getId() == idPizza) {
-				esta = true;
 				return p;
 			}
 		}
 		throw new IllegalArgumentException("Esta pizza no se encuentra en el sistema.");
 	}
 	
-	public int comprobarIdCliente(int idCliente) {
-		boolean esta = false;
-		int id = 0;
+	public Cliente comprobarIdCliente(int idCliente) {
 		for(Cliente c : clientes) {
 			if(c.getId() == idCliente) {
-				esta = true;
-				id = idCliente;
-			}
-			if(esta == false) {
-				throw new IllegalArgumentException("Este cliente no existe.");
+				return c;
 			}
 		}
-		return id;
-		
+		throw new IllegalArgumentException("Este cliente no existe.");
+			
 	}
 
 	public void editarPedido(Scanner sc) {

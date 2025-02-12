@@ -9,17 +9,17 @@ import pizzeria.enums.EnumTipo;
 public class Pedido {
 	private static int contadorIdPedido = 0;
 	private int idPedido;
-	private int idCliente;
+	private Cliente cliente;
 	private LocalDateTime fecha;
 	private double total;
 	private EnumTipo tipo;
 	private List<Pizza> pizzasPedido;
 	private static Pedido ultimoPedido;
 
-	public Pedido(int cliente, String tipo) {
+	public Pedido(Cliente cliente, String tipo) {
 		contadorIdPedido++;
 		this.idPedido = contadorIdPedido;
-		setCliente(cliente);
+		this.cliente = cliente;
 		this.fecha = LocalDateTime.now();
 		setTipo(tipo);
 		this.pizzasPedido = new ArrayList<Pizza>();
@@ -31,15 +31,7 @@ public class Pedido {
 		return ultimoPedido;
 	}
 
-	public void setCliente(int idCliente) {
-		if (idCliente <= 0) {
-			throw new IllegalArgumentException("El id del cliente no puede ser nulo. ");
-		}else{
-			
-			this.idCliente = comprobarIdcliente();
-		}
-		
-	}
+	
 
 	public void setTipo(String tipo) {
 	    if (tipo == null || !(tipo.equals("LOCAL") || tipo.equals("RECOGER") || tipo.equals("DOMICILIO"))) {
@@ -49,8 +41,8 @@ public class Pedido {
 	}
 
 
-	public int getCliente() {
-		return idCliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
 	public int getIdPedido() {
@@ -75,12 +67,12 @@ public class Pedido {
 
 	public void addPizzaPedido(Pizza p) {
 			pizzasPedido.add(p);
-			this.total += p.getPrecio();	
+			this.total += p.getPrecio();
 	}
 	
 	public void mostrarInfoPedido() {
 		if(!pizzasPedido.isEmpty()) {
-			System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, idCliente, fecha, total,
+			System.out.printf("ID: %s%nCliente: %s%nFecha: %s%nTotal: %.2f%nTipo: %s%n", idPedido, cliente.getId(), fecha, total,
 				tipo);
 			System.out.println("Pizzas: ");
 			for (Pizza pizza : pizzasPedido) {
@@ -124,4 +116,11 @@ public class Pedido {
 		}
 	}
 	
+	public double saldoCliente() {
+		return cliente.getDinero();
+	}
+	
+	public void cobrarPedidoCliente(double dinero) {
+		cliente.restarSaldoDisponible(dinero);
+	}
 }

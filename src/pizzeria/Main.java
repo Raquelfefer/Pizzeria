@@ -21,8 +21,8 @@ public class Main {
 					+ "\n5. Ver pedidos \n6. Ver clientes \n7. Consultar cliente mediante su telefono"
 					+ "\n8. Buscar pizzas con ingrediente \n9. Buscar pizza sin ingrediente \n10. Pedidos de hoy"
 					+ "\n11. Pedidos consumidos en el local \n12. Pedidos para recoger \n13. Pedidos a domicilio"
-					+ "\n14. Pizza mas cara \n15. Pizza mas barata \n16. Ultimo pedido realizado \n17. Eliminar pizza de pedido \n"
-					+ "18. Salir del menú");
+					+ "\n14. Pizza mas cara \n15. Pizza mas barata \n16. Ultimo pedido realizado \n17. Eliminar pizza de pedido \n18. Añadir saldo al cliente \n"
+					+ "19. Salir del menú");
 
 			System.out.println();
 			System.out.println();
@@ -45,8 +45,7 @@ public class Main {
 				break;
 
 			case 3:
-				Pedido pe = nuevoPedido(sc);
-				pizzeria.addPedido(pe);
+				Pedido pe = nuevoPedido(sc,pizzeria);
 				int p1;
 				do {
 					System.out.println("¿Qué pizza quieres añadir?");
@@ -57,7 +56,7 @@ public class Main {
 						pe.addPizzaPedido(pizzeria.comprobarIdPizza(p1));
 					}
 				} while (p1 != 0);
-
+				pe.mostrarInfoPedido();
 				do {
 					System.out.println("¿Que pizza quieres eliminar?");
 					pe.mostrarPizzasPedido();
@@ -67,8 +66,15 @@ public class Main {
 						pe.delPizzaPedido(p1);
 					}
 				} while (p1 != 0);
+				if(pe.saldoCliente() < pe.getTotal()) {
+					System.out.println("No tienes saldo suficiente para hacer el pedido. El pedido ha sido cancelado.");
+				}else {
+					pizzeria.addPedido(pe);
+					pe.cobrarPedidoCliente(pe.getTotal());
+					pe.mostrarInfoPedido();
+					System.out.println("Pedido realizado.");
+				}
 				break;
-
 			case 4:
 				pizzeria.mostrarPizzas();
 				break;
@@ -129,11 +135,18 @@ public class Main {
 
 			case 17:
 				pizzeria.editarPedido(sc);
-				;
+				break;
+			case 18: 
+				System.out.println("¿A qué cliente quieres añadir dinero?");
+				int c1 = sc.nextInt();
+				Cliente cliente = pizzeria.comprobarIdCliente(c1);
+				System.out.println("¿Cuánto dinero quieres introducir?");
+				double saldo = sc.nextDouble();
+				cliente.aumentarSaldoDisponible(saldo);
 				break;
 			default:
 
-				if (opcion != 18) {
+				if (opcion != 19) {
 
 					System.out.println("Esta opción no es válida.");
 				} else {
@@ -142,7 +155,7 @@ public class Main {
 				break;
 			}
 
-		} while (opcion != 18);
+		} while (opcion != 19);
 
 	}
 
@@ -166,19 +179,18 @@ public class Main {
 		String email = sc.next();
 		System.out.println("Teléfono: ");
 		String telefono = sc.next();
-		System.out.println("¿Quieres introducir saldo?");
+		System.out.println("¿Cuanto saldo quieres introducir (0-...)?");
 		double dineroDisponible = sc.nextDouble();
 		return new Cliente(nombre, direccion, email, telefono, dineroDisponible);
 	}
 
-	public static Pedido nuevoPedido(Scanner sc) {
+	public static Pedido nuevoPedido(Scanner sc, Pizzeria pizzeria) {
 		System.out.println("ID Cliente: ");
 		int cliente = sc.nextInt();
-				
 		System.out.println("Tipo de entrega: LOCAL,RECOGER,DOMICILIO");
 		String tipo = sc.next().toUpperCase();
 
-		return new Pedido(cliente, tipo);
+		return new Pedido(pizzeria.comprobarIdCliente(cliente), tipo);
 	}
 
 }
