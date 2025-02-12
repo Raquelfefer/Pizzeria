@@ -210,6 +210,22 @@ public class Pizzeria {
 		}
 		throw new IllegalArgumentException("Esta pizza no se encuentra en el sistema.");
 	}
+	
+	public int comprobarIdCliente(int idCliente) {
+		boolean esta = false;
+		int id = 0;
+		for(Cliente c : clientes) {
+			if(c.getId() == idCliente) {
+				esta = true;
+				id = idCliente;
+			}
+			if(esta == false) {
+				throw new IllegalArgumentException("Este cliente no existe.");
+			}
+		}
+		return id;
+		
+	}
 
 	public void editarPedido(Scanner sc) {
 		System.out.println("Introduce el id del pedido: ");

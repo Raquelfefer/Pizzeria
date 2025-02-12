@@ -34,8 +34,11 @@ public class Pedido {
 	public void setCliente(int idCliente) {
 		if (idCliente <= 0) {
 			throw new IllegalArgumentException("El id del cliente no puede ser nulo. ");
+		}else{
+			
+			this.idCliente = comprobarIdcliente();
 		}
-		this.idCliente = idCliente;
+		
 	}
 
 	public void setTipo(String tipo) {

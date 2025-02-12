@@ -163,13 +163,15 @@ public class Main {
 		String email = sc.next();
 		System.out.println("Teléfono: ");
 		String telefono = sc.next();
-
-		return new Cliente(nombre, direccion, email, telefono);
+		System.out.println("¿Quieres introducir saldo?");
+		double dineroDisponible = sc.nextDouble();
+		return new Cliente(nombre, direccion, email, telefono, dineroDisponible);
 	}
 
 	public static Pedido nuevoPedido(Scanner sc) {
 		System.out.println("ID Cliente: ");
 		int cliente = sc.nextInt();
+				
 		System.out.println("Tipo de entrega: LOCAL,RECOGER,DOMICILIO");
 		String tipo = sc.next().toUpperCase();
 

@@ -28,7 +28,6 @@ public class Cliente {
 		setEmail(email);
 		setTelefono(telefono);
 		setDinero(dineroDisponible);
-
 	}
 
 	public int getId() {
