@@ -105,6 +105,7 @@ public class Pedido {
 		if (eliminarPizza != null) {
 			pizzasPedido.remove(eliminarPizza);
 			this.total -= eliminarPizza.getPrecio();
+			cliente.aumentarSaldoDisponible(eliminarPizza.getPrecio());
 		} else {
 			throw new IllegalArgumentException("Esta pizza no se encuentra en el pedido.");
 		}
@@ -123,4 +124,7 @@ public class Pedido {
 	public void cobrarPedidoCliente(double dinero) {
 		cliente.restarSaldoDisponible(dinero);
 	}
+	public void devolucionSaldoCliente(double dinero){
+		cliente.aumentarSaldoDisponible(dinero);
+		}
 }
