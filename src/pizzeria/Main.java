@@ -7,12 +7,40 @@ public class Main {
 
 	public static void main(String[] args) {
 		menu();
+		
 	}
+	
 
 	public static void menu() {
 		Scanner sc = new Scanner(System.in);
 		Pizzeria pizzeria = new Pizzeria();
+		
+		Pizza pizza1 = new Pizza("Margarita", "Tomate, Mozzarella, Albahaca", 8.50);
+		Pizza pizza2 = new Pizza("Pepperoni", "Tomate, Mozzarella, Pepperoni", 9.00);
+		Pizza pizza3 = new Pizza("Cuatro Estaciones", "Tomate, Mozzarella, Jamón, Champiñones, Aceitunas, Pimientos",
+				10.00);
+		Pizza pizza4 = new Pizza("Vegetariana", "Tomate, Mozzarella, Espinacas, Pimientos, Champiñones, Cebolla", 9.50);
 
+		Cliente cliente1 = new Cliente("Juan Pérez", "Calle Ficticia 123", "juan@email.com", "555123456", 1500.50);
+		Cliente cliente2 = new Cliente("Ana Gómez", "Avenida Siempre Viva 456", "ana@email.com", "555654321", 2200.75);
+		Cliente cliente3 = new Cliente("Carlos Rodríguez", "Calle Real 789", "carlos@email.com", "555987654", 3000.00);
+		Cliente cliente4 = new Cliente("Luisa Martínez", "Plaza Mayor 101", "luisa@email.com", "555246810", 500.30);
+		
+		Pedido pedido1 = new Pedido(cliente1,"RECOGER");
+		pedido1.addPizzaPedido(pizza4);
+		pizzeria.addPedido(pedido1);
+		
+		pizzeria.addPizzas(pizza1);
+		pizzeria.addPizzas(pizza2);
+		pizzeria.addPizzas(pizza3);
+		pizzeria.addPizzas(pizza4);
+		
+		pizzeria.addClientes(cliente1);
+		pizzeria.addClientes(cliente2);
+		pizzeria.addClientes(cliente3);
+		pizzeria.addClientes(cliente4);
+		
+		
 		int opcion;
 		do {
 			System.out.println();
@@ -21,17 +49,13 @@ public class Main {
 					+ "\n5. Ver pedidos \n6. Ver clientes \n7. Consultar cliente mediante su telefono"
 					+ "\n8. Buscar pizzas con ingrediente \n9. Buscar pizza sin ingrediente \n10. Pedidos de hoy"
 					+ "\n11. Pedidos consumidos en el local \n12. Pedidos para recoger \n13. Pedidos a domicilio"
-					+ "\n14. Pizza mas cara \n15. Pizza mas barata \n16. Ultimo pedido realizado \n17. Eliminar pizza de pedido \n18. Añadir saldo al cliente \n"
-					+ "19. Salir del menú");
+					+ "\n14. Pizza mas cara \n15. Pizza mas barata \n16. Ultimo pedido realizado \n17. Eliminar pizza de pedido \n18. Añadir pizza \n 19. Añadir saldo al cliente \n"
+					+ "20. Salir del menú");
 
 			System.out.println();
 			System.out.println();
 			System.out.println("Introduce la opción:");
 			opcion = sc.nextInt();
-
-			if (opcion < 1 || opcion > 18) {
-				System.out.println("Opción no válida. Por favor, elige una opción del 1 al 18.");
-			}
 
 			switch (opcion) {
 			case 1:
@@ -45,7 +69,7 @@ public class Main {
 				break;
 
 			case 3:
-				Pedido pe = nuevoPedido(sc,pizzeria);
+				Pedido pe = nuevoPedido(sc, pizzeria);
 				int p1;
 				do {
 					System.out.println("¿Qué pizza quieres añadir?");
@@ -66,9 +90,9 @@ public class Main {
 						pe.delPizzaPedido(p1);
 					}
 				} while (p1 != 0);
-				if(pe.saldoCliente() < pe.getTotal()) {
+				if (pe.saldoCliente() < pe.getTotal()) {
 					System.out.println("No tienes saldo suficiente para hacer el pedido. El pedido ha sido cancelado.");
-				}else {
+				} else {
 					pizzeria.addPedido(pe);
 					pe.cobrarPedidoCliente(pe.getTotal());
 					pe.mostrarInfoPedido();
@@ -134,9 +158,12 @@ public class Main {
 				break;
 
 			case 17:
-				pizzeria.editarPedido(sc);
+				pizzeria.eliminarPizza(sc);
 				break;
-			case 18: 
+			case 18:
+				pizzeria.agregarPizza(sc);
+				break;
+			case 19:
 				System.out.println("¿A qué cliente quieres añadir dinero?");
 				int c1 = sc.nextInt();
 				Cliente cliente = pizzeria.comprobarIdCliente(c1);
@@ -146,7 +173,7 @@ public class Main {
 				break;
 			default:
 
-				if (opcion != 19) {
+				if (opcion != 20) {
 
 					System.out.println("Esta opción no es válida.");
 				} else {
@@ -154,6 +181,8 @@ public class Main {
 				}
 				break;
 			}
+		
+				
 
 		} while (opcion != 19);
 

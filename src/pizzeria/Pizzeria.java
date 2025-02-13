@@ -89,7 +89,7 @@ public class Pizzeria {
 	public void consultarClienteTelefono(String telefono) {
 		boolean esta = false;
 		for (Cliente cliente : this.clientes) {
-			if (cliente.getTelefono().equals(telefono)) {
+			if (cliente.getTelefono().contains(telefono)) {
 				cliente.mostrarInfoCliente();
 				esta = true;
 			}
@@ -192,6 +192,19 @@ public class Pizzeria {
 			}
 		}
 	}
+	
+	public void consultarPedidosAyer() {
+
+		LocalDateTime inicio = LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(10,00));
+		LocalDateTime fin = LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT);
+		for (Pedido pedido : this.pedidos) {
+			if (pedido.getFecha().isAfter(inicio) && pedido.getFecha().isBefore(fin)) {
+				pedido.mostrarInfoPedido();
+
+			}
+		}
+	}
+	
 	public void mostrarNombrePizza() {
 
 		for(Pizza p : pizzas) {
@@ -219,7 +232,7 @@ public class Pizzeria {
 			
 	}
 
-	public void editarPedido(Scanner sc) {
+	public void eliminarPizza(Scanner sc) {
 		System.out.println("Introduce el id del pedido: ");
 		int pe = sc.nextInt();
 		for (Pedido p : pedidos) {
@@ -234,6 +247,26 @@ public class Pizzeria {
 					}
 				} while (pe != 0);
 			}
+			
+		}
+	}
+	public void agregarPizza(Scanner sc) {
+		System.out.println("Introduce el id del pedido: ");
+		int pe = sc.nextInt();
+		for (Pedido p : pedidos) {
+			if (p.getIdPedido() == pe) {
+				do {
+					System.out.println("¿Que pizza quieres añadir?");
+				
+					mostrarNombrePizza();
+					System.out.println("Si no quieres añadir las pizzas, pulsa 0. ");
+					pe = sc.nextInt();
+					if (pe != 0) {
+						p.addPizzaPedido(comprobarIdPizza(pe));
+					}
+				} while (pe != 0);
+			}
+			
 		}
 	}
 	
